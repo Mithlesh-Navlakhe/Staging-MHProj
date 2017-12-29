@@ -1,0 +1,54 @@
+/***
+ul,li {
+	margin:0; 
+	padding:0; 
+	/****list-style:none;  ** 
+}  ***/
+
+ol  > li {
+	margin:0; 
+	padding:0; 
+	list-style-type: decimal; 
+} 
+
+.ms-options > ul,li {
+	/**margin:0;
+	/***list-style:disc; **/
+	list-style-type:none; 
+	padding:0;
+}
+.mailbody ul > li { 
+	list-style-type:disc;
+} 
+  
+.label { 
+	color:#000; 
+	font-size:16px;
+}
+
+.ms-options-wrap .selectbutton{
+	/***width: 91.66% !important; ***/
+	height: 42px; 
+	font-size: 14px;
+	border-right: 1px solid #CCC!important;
+	border-top: 1px solid #CCC!important;
+	border-left: 1px solid #CCC!important;
+	border-bottom: 1px solid #CCC!important;
+}
+
+.ms-options {
+	max-width: 100%;
+	margin: 0 !important;
+	border-right: 1px solid #CCC!important;
+	border-top: 1px solid #CCC!important;
+	border-left: 1px solid #CCC!important;
+	border-bottom: 1px solid #CCC!important;
+}
+
+.selectbutton{
+	height: 42px; 
+	border: 1px solid #CCC !important;
+	font-size: 15px; padding-left: 15px;
+}
+
+.field-block{margin-left: 10em;}

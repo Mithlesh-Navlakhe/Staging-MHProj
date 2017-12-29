@@ -1,0 +1,369 @@
+@media only screen and (min-width: 320px) and (max-width: 350px){
+	/***.container {  width: 38em;  } **/
+	label{  padding-top: 10px;font-size: 16px; }
+	.label-mob-width{ 	width: 27%; }
+	.input-mob-width{  width: 50%; }
+	#bodyData{ overflow-x: hidden; width: 38em;}
+	.logo-image{ height: 90px; width: 200px;}
+	.user-header{ margin-top: 11%; height: 40px;right: 5%;width: 34%;}
+	.user-image{ height:80px; width: 80px; position: absolute; left: -60px; top: -39px;}
+	.user-detail{ font-size: 14px; width:100%; padding: 7px 25px;margin-top: -14%;}
+	.save-button{ margin-left: 10px; }
+	.status-content-width{	width: 88%;}
+	.project-dropdown{ width: 100%; }
+	.picker-width{ width: 90%; z-index: 2;}
+	.dash-table{ max-width: 100%; }
+	#pendingtaskblock{ margin:0; }
+	/***.report-text{ width: 60%; }***/
+	.half-block-area{ min-width:100%; }
+	.open-menu{ position: absolute; right: 0; }
+	.navbar-submenu{ position: fixed; right:25px; }
+	.dropdown-menu-style{ position: absolute !important;top:0; left: -11.4em; background-color: #808080 !important; }
+	.navbar-style{ overflow: hidden; height: 65px;  position: fixed;  min-width: 100%; z-index: 5; }
+	.header-container{ position: relative; top: 44px; }
+	.container{ position: relative; top: 50px; }
+	.static-header{ top: 5px; height: 100px;}
+	.daily-picker{ margin-top:30px; }
+	.pagination{ max-width: 100%; font-size: 4.6vw;height: 10em; }
+	.block-area{ margin:16% 2% 0 3%; }
+	.compressed-area{ margin: 0; }
+	.project-label{ width: 16%; }
+	.project-input{ width: 80%; }
+	#date-leave{max-width: 72%;}
+}
+
+@media only screen and (min-width: 350px) and (max-width: 380px){
+	/***.container {  width: 38em;  } **/
+	label{  padding-top: 10px;font-size: 15px; }
+	.label-mob-width{ 	width: 37%; }
+	.input-mob-width{  width: 55%; }
+	#bodyData{ overflow-x: hidden;}
+	.logo-image{ height: 66px; width: 150px;}
+	.user-header{ margin-top: 5%; height: 40px;right: 1%;width: 40%;}
+	.user-image{ height:50px; width: 50px; }
+	.user-detail{ font-size: 10px; width:100%; padding: 6px 23px;}
+	.save-button{ margin-left: 10px; }
+	.status-content-width{	width: 97%;}
+	.project-dropdown{ width: 100%; margin-left: 0;}
+	.picker-width{ min-width: 90%; z-index: 2;}
+	/***.report-text{ width: 65%; }***/
+	.dash-table{ min-width: 100%; }
+	.half-block-area{ min-width:100%; }
+	.open-menu{ position: absolute; right: 0; }
+	.button-field{ width: 40%; margin: 10px; }
+	.BlockHeight{ float:left !important; width:100%; margin-bottom: 5em;}
+	.navbar-submenu{ position: fixed; right:25px; }
+	.dropdown-menu-style{ position: absolute !important;top:0; left: -11.4em; background-color: #808080 !important; }
+	.navbar-style{ overflow: hidden; height: 65px;  position: fixed;  min-width: 100%; z-index: 5; }
+	.header-container{ position: relative; top: 44px; }
+	.container{ position: relative; top: 44px; }
+	.static-header{ top: 35px; height: 100px;}
+	.daily-picker{ margin-top:30px; }
+	.info-block{ height: 5em; }
+	.block-content{margin-bottom: 1em;}
+	.block-area{ margin:16% 2% 0 3%; }
+	.compressed-area{ margin: 0; }
+	.project-label{ width: 16%; }
+	.project-input{ width: 80%; }
+	.pagination{ max-width: 100%; font-size:2.6vw;height: 6em; }
+	.pagination .paginate_button.previous a{max-width:65px;padding-left: 10px;}
+	.pagination .paginate_button.next a{max-width:45px;padding-left: 10px;}
+	.pagination .paginate_button a{max-width:35px; padding-left: 6px;}
+	#date-leave{max-width: 75%;}
+}
+
+@media only screen and (min-width: 380px) and (max-width: 420px){
+	/***.container {  width: 34em;  } **/
+	label{  padding-top: 10px;font-size: 13px; }
+	.label-mob-width{ 	width: 30%; }
+	.input-mob-width{  width: 55%; }
+	#bodyData{ overflow-x: hidden; }
+	.logo-image{ height: 84px; width: 210px;}
+	.user-header{ margin-top: 9%; height: 40px;right: 1%;width: 36%;}
+	.user-detail{ font-size: 10px; width:100%; padding: 6px 23px;}
+	.user-image{ height:50px; width: 50px; }
+	.save-button{ margin-left: 10px; }
+	.status-content-width{	width: 95%;}
+	.project-dropdown{ width: 100%; margin-left: 0;}
+	.picker-width{ width: 90%; z-index: 2;}
+	/**.report-text{ width: 80%; } **/
+	.BlockHeight{ float:left !important; width:100%;margin-bottom: 5em; }
+	.button-field{ width: 40%; margin: 10px; }
+	.dash-table{ min-width: 100%; }
+	.open-menu{ position: absolute; right: 0; }
+	.navbar-submenu{ position: fixed; right:25px; }
+	.dropdown-menu-style{ position: absolute !important;top:0; left: -11.4em; background-color: #808080 !important; }
+	.navbar-style{ overflow: hidden; height: 65px;  position: fixed;  min-width: 100%; z-index: 5; }
+	.header-container{ position: relative; top: 44px; }
+	.container{ position: relative; top: 44px; }
+	.static-header{ top: 25px; height: 100px;}
+	.daily-picker{ margin-top:30px; }	
+	.block-area{ margin:16% 2% 0 3%; }
+	.compressed-area{ margin: 0; }
+	.project-label{ width: 16%; }
+	.project-input{ width: 80%; }
+	.info-block{ height: 5em; }
+	.pagination{ height:5em; max-width: 100%; font-size:80%; }
+	.pagination .paginate_button.previous a{max-width:70px;padding-left: 15px;}
+	.pagination .paginate_button.next a{max-width:50px;padding-left: 13px;}
+	.pagination .paginate_button a{max-width:35px; padding-left: 6px;}
+	#date-leave{max-width: 77%;}
+}
+
+@media only screen and (min-width: 421px) and (max-width: 470px){
+	.container {  width: 32em;  position: relative; top: 44px;}
+	label{  padding-top: 10px;font-size: 14px; }
+	.label-mob-width{ 	width: 28%; }
+	.input-mob-width{  width: 55%; }
+	#bodyData{ overflow-x: hidden; /**width: 33em;**/}
+	.logo-image{ height: 80px; width: 190px;}
+	.user-image{ height:60px; width: 60px; left: -40px; bottom: -4px;}
+	.user-detail{ font-size: 11px; width:100%; padding: 6px 23px; height:40px;}
+	.user-header{ margin-top: 8%; height: 40px;right: 1%;width: 36%;}
+	.save-button{ margin-left: 10px; }
+	.status-content-width{	width: 95%;}
+	.BlockHeight{ float:left !important; width:100%; margin-bottom: 5em;}
+	.dash-table{ min-width: 100%; }
+	.open-menu{ position: absolute; right: 0; }
+	.picker-width{ z-index: 2; width: 90%;}
+	.navbar-submenu{ position: fixed; right:25px; }
+	.dropdown-menu-style{ position: absolute !important;top:0; left: -11.4em; background-color: #808080 !important; }
+	.navbar-style{ overflow: hidden; height: 65px;  position: fixed;  min-width: 100%; z-index: 5; }
+	.header-container{ position: relative; top: 44px; }
+	.static-header{ top: 40px; height: 9em;}
+	.daily-picker{ margin-top:30px; }	
+	.block-area{ margin:16% 2% 0 3%; }
+	.compressed-area{ margin: 0; }
+	.project-label{ width: 16%; }
+	.project-input{ width: 80%; }
+	.info-block{ height: 5em; }
+	.project-dropdown{ width: 100%; margin-left: 0;}
+	.pagination{ width: 95%; font-size:14px;height: 5em; }
+	.pagination .paginate_button.previous a{max-width:85px;padding-left: 15px;}
+	.pagination .paginate_button.next a{max-width:53px;padding-left: 13px;}
+	.pagination .paginate_button a{max-width:39px; padding-left: 6px;}
+	#date-leave{max-width: 80%;}
+}
+
+@media only screen and (min-width: 471px) and (max-width: 500px){
+	.container {  width: 34em; position: relative; top: 44px;  }
+	label{  padding-top: 10px;font-size: 14px; }
+	.label-mob-width{ 	width: 24%; }
+	.input-mob-width{  width: 50%; }	
+	#bodyData{ overflow-x: hidden; }
+	.status-content-width{	width: 95%;}
+	.logo-image{ height: 84px; width: 210px;}
+	.user-image{ height:65px; width: 65px; left: -45px; bottom: -8px;}
+	.user-detail{ font-size: 13px; width:100%; padding: 6px 23px; height:45px;}
+	.user-header{ margin-top: 10%; height: 40px;right: 1%;width: 36%;}
+	.save-button{ margin-left: 10px; }
+	.BlockHeight{ float:left !important; width:100%;margin-bottom: 5em; }
+	.open-menu{ position: absolute; right: 0; }
+	.picker-width{ z-index: 2; width: 90%;}
+	.navbar-submenu{ position: fixed; right:25px; }
+	.dropdown-menu-style{ position: absolute !important;top:0; left: -11.4em; background-color: #808080 !important; }
+	.navbar-style{ overflow: hidden; height: 65px;  position: fixed;  min-width: 100%; z-index: 5; }
+	.header-container{ position: relative; top: 44px; }
+	.static-header{ top: 7px; height: 100px;}
+	.daily-picker{ margin-top:30px; }
+	.block-area{ margin:16% 2% 0 3%; }
+	.compressed-area{ margin: 0; }
+	.project-label{ width: 16%; }
+	.project-input{ width: 80%; }
+	.info-block{ height: 5em; }
+	.project-dropdown{ width: 100%; margin-left: 0;}
+	.pagination{ width: 96%; font-size:15px;height: 5em; }
+	.pagination .paginate_button.previous a{max-width:85px;padding-left: 15px;}
+	.pagination .paginate_button.next a{max-width:53px;padding-left: 13px;}
+	.pagination .paginate_button a{max-width:44px; padding-left: 6px;}
+	#date-leave{max-width: 80%;}
+}
+
+@media only screen and (min-width: 501px) and (max-width: 550px){
+	.container {  width: 34em;  position: relative; top: 44px;} 
+	label{  padding-top: 10px;font-size: 14px; }
+	.label-mob-width{ 	width: 26%; }
+	.input-mob-width{  width: 53%; }	
+	#bodyData{ overflow-x: hidden; }
+	.logo-image{ height: 84px; width: 210px;}
+	.user-image{ height:65px; width: 65px; left: -45px; bottom: -8px;}
+	.user-detail{ font-size: 13px; width:100%; padding: 6px 23px; height:45px;}
+	.user-header{ margin-top: 10%; height: 40px;right: 1%;width: 36%;}
+	.save-button{ margin-left: 10px; }
+	.open-menu{ position: absolute; right: 0; }
+	.status-content-width{	width: 95%;}
+	.BlockHeight{ float:left !important; width:100%;margin-bottom: 5em; }
+	.picker-width{ z-index: 2; width: 90%;}
+	.navbar-submenu{ position: fixed; right:25px; }
+	.dropdown-menu-style{ position: absolute !important;top:0; left: -11.4em; background-color: #808080 !important; }
+	.navbar-style{ overflow: hidden; height: 65px;  position: fixed;  min-width: 100%; z-index: 5; }
+	.header-container{ position: relative; top: 44px; }
+	.static-header{ top: 28px; height: 9em;}
+	.daily-picker{ margin-top:30px; }
+	.block-area{ margin:16% 2% 0 3%; }
+	.compressed-area{ margin: 0; }
+	.project-label{ width: 15%; }
+	.project-input{ width: 80%; }
+	.info-block{ height: 5em; }
+	.pagination{ width: 96%; font-size:15px;height: 5em; }
+	.pagination .paginate_button.previous a{max-width:85px;padding-left: 15px;}
+	.pagination .paginate_button.next a{max-width:53px;padding-left: 13px;}
+	.pagination .paginate_button a{max-width:44px; padding-left: 6px;}
+	#date-leave{max-width: 80%;}
+}
+
+@media only screen and (min-width: 551px) and (max-width: 600px){
+	.container {  width: 38em; position: relative; top: 44px; }
+	label{  padding-top: 10px;font-size: 15px; }
+	.label-mob-width{ 	width: 25%; }
+	.input-mob-width{  width: 56%; }	
+	#bodyData{ overflow-x: hidden; }
+	.navbar-toggle{ margin-right: 45px; }
+	.logo-image{ height: 105px; width: 250px;margin-top: 20px;}
+	.user-image{ height:65px; width: 65px; left: -45px; bottom: -8px;}
+	.user-detail{ font-size: 13px; width:100%; padding: 6px 23px; height:45px;}
+	.user-header{ margin-top: 12%; height: 40px;right: 1%;width: 36%;}
+	.status-content-width{	width: 95%;}
+	.save-button{ margin-left: 10px; }
+	.BlockHeight{ float:left !important; width:100%;margin-bottom: 2em; }
+	.open-menu{ position: absolute; right: 0; }
+	.navbar-submenu{ position: fixed; right:25px; }
+	.dropdown-menu-style{ position: absolute !important;top:0; left: -11.5em; background-color: #808080 !important; }
+	.navbar-style{ overflow: hidden; height: 65px;  position: fixed;  min-width: 100%; z-index: 5; }
+	.header-container{ position: relative; top: 44px; }
+	.static-container{ position: relative; top: 44px; }
+	.static-header{ top: 1%; height: 8em;}
+	.daily-picker{ margin-top:30px; }
+	.picker-width{ z-index: 2; width: 90%;}
+	.pagination{ max-width: 100%; font-size:15px;height: 5em; }
+	.block-area{ margin:16% 2% 0 3%; }
+	.picker-width{ z-index: 2;}
+	.compressed-area{ margin: 0; }
+	.project-label{ width: 14%; }
+	.project-input{ width: 80%; }
+	.info-block{ height: 5em; }
+	#date-leave{max-width: 84%;}
+}
+
+@media only screen and (min-width: 601px) and (max-width: 650px){
+	.container {  width: 40em; position: relative; top: 44px; }
+	label{  padding-top: 10px;font-size: 15px; }
+	.label-mob-width{ 	width: 26%; }
+	.input-mob-width{  width: 52%; }	
+	#bodyData{ overflow-x: hidden; }
+	.logo-image{ height: 110px; width: 250px;margin-top: 20px;}
+	.user-image{ height:65px; width: 65px; left: -45px; bottom: -8px;}
+	.user-detail{ font-size: 13px; width:100%; padding: 6px 23px; height:45px;}
+	.user-header{ margin-top: 14%; height: 40px;right: 1%;width: 36%;}
+	.save-button{ margin-left: 10px; }
+	.open-menu{ position: absolute; right: 0; }
+	.status-content-width{	width: 95%;}
+	.BlockHeight{ float:left !important; width:100%;margin-bottom: 5em; }
+	.navbar-submenu{ position: fixed; right:25px; }
+	.dropdown-menu-style{ position: absolute !important;top:0; left: -11.4em; background-color: #808080 !important; }
+	.navbar-style{ overflow: hidden; height: 65px;  position: fixed;  min-width: 100%; z-index: 5; }
+	.header-container{ position: relative; top: 44px; }
+	.static-header{ top: 1%; height: 9em;}
+	.picker-width{ z-index: 2; width: 90%;}
+	.daily-picker{ margin-top:30px; }
+	.pagination{ max-width: 100%; font-size:15px;height: 5em; }
+	.block-area{ margin:16% 2% 0 3%; }
+	.compressed-area{ margin: 0; }
+	.project-label{ width: 14%; }
+	.project-input{ width: 80%; }
+	.info-block{ height: 5.5em; }
+	#date-leave{max-width: 85%;}
+}
+
+@media only screen and (min-width: 651px) and (max-width: 700px){
+	.container {  width: 44em;  position: relative; top: 44px; }
+	label{  padding-top: 10px;font-size: 15px; }
+	.label-mob-width{ 	width: 25%; }
+	.input-mob-width{  width: 58%; }	
+	#bodyData{ overflow-x: hidden; }
+	.save-button{ margin-left: 10px; }
+	.status-content-width{	width: 95%;}
+	.open-menu{ position: absolute; right: 0; }
+	.BlockHeight{ float:left !important; width:100%;margin-bottom: 5em; }
+	.navbar-submenu{ position: fixed; right:25px; }
+	.dropdown-menu-style{ position: absolute !important;top:0; left: -11.4em; background-color: #808080 !important; }
+	.navbar-style{ overflow: hidden; height: 65px;  position: fixed;  min-width: 100%; z-index: 5; }
+	.header-container{ position: relative; top: 44px; }
+	.picker-width{ z-index: 2; width: 90%;}
+	.static-header{ top: 15px; height: 9em;}
+	.daily-picker{ margin-top:30px; }
+	.pagination{ max-width: 100%; font-size:15px;height: 5em; }
+	.info-block{ height: 5em; }
+	#date-leave{max-width: 87%;}
+}
+
+@media only screen and (min-width: 701px) and (max-width: 750px){
+	.container {  width: 46em;  position: relative; top: 44px;}
+	label{  padding-top: 10px;font-size: 15px; }
+	.label-mob-width{ 	width: 25%; }
+	.input-mob-width{  width: 55%; }	
+	#bodyData{ overflow-x: hidden; }
+	.save-button{ margin-left: 10px; }
+	.open-menu{ position: absolute; right: 0; }
+	.status-content-width{	width: 95%;}
+	.navbar-submenu{ position: fixed; right:25px; }
+	.dropdown-menu-style{ position: absolute !important;top:0; left: -11.4em; background-color: #808080 !important; }
+	.BlockHeight{ float:left !important; width:100%;margin-bottom: 5em; }
+	.navbar-style{ overflow: hidden; height: 65px;  position: fixed;  min-width: 100%; z-index: 5; }
+	.header-container{ position: relative; top: 44px; }
+	.picker-width{ z-index: 2; width: 90%;}
+	.static-header{ top: 15px; height: 9em;}
+	.daily-picker{ margin-top:30px; }
+	.pagination{ max-width: 100%; font-size:15px;height: 5em; }
+	.block-area{ margin:16% 2% 0 3%; }
+	.compressed-area{ margin: 0; }
+	.project-label{ width: 14%; }
+	.project-input{ width: 80%; }
+	#date-leave{max-width: 87%;}
+}
+
+@media only screen and (min-width: 751px) and (max-width: 766px){
+	.container {  width: 50em; position: relative; top: 44px; }
+	label{  padding-top: 10px;font-size: 14px; }
+	.label-mob-width{ 	width: 26%; }
+	.input-mob-width{  width: 65%; }	
+	#bodyData{ overflow-x: hidden; }
+	.save-button{ margin-left: 10px; }
+	.status-content-width{	width: 95%;}
+	.open-menu{ position: absolute; right: 0; }
+	.navbar-submenu{ position: fixed; right:25px; }
+	.dropdown-menu-style{ position: absolute !important;top:0; left: -11.4em; background-color: #808080 !important; }
+	.navbar-style{ overflow: hidden; height: 65px;  position: fixed;  min-width: 100%; z-index: 5; }
+	.header-container{ position: relative; top: 44px; }
+	.picker-width{ z-index: 2; width: 93%;}
+	.static-header{ top: 15px; height: 9em;}
+	.daily-picker{ margin-top:30px; }
+	.pagination{ max-width: 100%; font-size:15px;height: 7em; }
+	.block-area{ margin:16% 2% 0 3%; }
+	.compressed-area{ margin: 0; }
+	.project-label{ width: 14%; }
+	.project-input{ width: 80%; }
+}
+
+@media only screen and (min-width: 767px) and (max-width: 990px){
+	.pendingtask{ position: absolute; right: 25px; }
+	.daily-picker{ margin-left:15%; }
+	.block-area{ margin:16% 2% 0 3%; }
+	.compressed-area{ margin: 0; }
+	.project-label{ width: 14%; }
+	.project-input{ width: 80%; }
+	.picker-width{ z-index: 2;}
+	.picker-width{	width: 95%; }
+	.pagination{ max-width: 100%; font-size:15px;height: 5em; }
+	.pagination .paginate_button.previous a{max-width:80px;padding-left: 10px;}
+	.pagination .paginate_button.next a{max-width:50px;padding-left: 10px;}
+	.pagination .paginate_button a{max-width:44px; padding-left: 6px;}
+	#date-leave{max-width: 88%;}
+	#leave-submit{float:left;}
+	#leave-reset{float:left;}
+}
+
+@media only screen and (min-width: 995px) and (max-width: 1200px){
+	.picker-width{	width: 94%; }
+	#date-leave{max-width: 88%;}
+}

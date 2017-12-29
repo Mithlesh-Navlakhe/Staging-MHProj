@@ -1,0 +1,556 @@
+
+.no-padding{
+	padding: 0px;
+}
+
+.padding-five{
+	padding: 5px;
+}
+
+.padding-ten{
+	padding: 10px;
+}
+
+.padding-twenty{
+	padding: 20px 20px;
+}
+
+.padding-thirty{
+	padding: 30px;
+}
+
+.padding-top-ten{
+	padding-top: 10px;
+}
+
+.padding-top-twenty{
+	padding-top: 20px;
+}
+
+.padding-top-large{
+	padding-top: 25px;
+}
+
+.padding-left-ten{
+	padding-left: 10px;
+}
+
+.padding-left-fifteen{
+	padding-left: 15px;
+}
+
+.padding-left-twenty{
+	padding-left: 20px;
+}
+
+.padding-right-twenty{
+	padding-right: 20px;
+}
+
+.padding-left-thirty{
+	padding-left: 30px;
+}
+/*****
+.text-left{
+	text-align: left !important;
+}
+
+.text-center{
+	text-align: center !important;
+}  ***/
+
+/***/
+.font-bold{
+	font-weight: bold !important; 
+}
+
+.font-ten{
+	font-size: 10px;
+}
+
+.font-fifteen{
+	font-size: 15px;
+}
+
+.font-eighteen{
+	font-size: 18px;
+}
+
+.font-twenty{
+	font-size: 20px;
+}
+
+.font-thirty{
+	font-size: 30px;
+}
+.font-ariel{
+	font-family: Ariel,sans-serif;
+}
+/***/
+.task-block-container{
+	max-height: 18em;
+	height:500px;
+	overflow: auto;
+}
+
+.block-area{
+	margin: 4em 9em 5em 9em;
+}
+
+.half-block-area{
+	min-width:320px;
+	padding: 15px 15px 15px 2px;
+}
+
+.top-border{
+	border: 0;
+	border-top: 1px solid #ccc;
+}
+
+.bottom-border{
+	border: 0;
+	border-bottom: 1px solid #ccc;
+}
+.right-border{
+	border: 0;
+	border-right: 1px solid #ccc;
+}
+
+.no-left-border{
+	border-left: none;
+}
+.no-right-border{
+	border-right: none;
+}
+.compressed-area{
+	margin:1em 3em 6em 3em; 
+	padding: 18px 0 11px 10px;
+}
+
+.input-height{
+	height: 42px;
+}
+.scroll{
+	overflow: auto;
+}
+.no-scroll{
+	overflow: hidden;
+}
+
+.no-curve{
+	border-radius: 0px !important;
+}
+
+.popup-height{
+	max-height: 120px;
+}
+
+.saveemails-block{
+    margin-left: 6em;
+}
+
+.mail-project{
+	z-index: 2;
+}
+
+.input-hours{
+	max-width: 80%;
+}
+
+#date-leave{
+	max-width: 90%;
+}
+
+/*****/
+.error-text{
+	color: #802420;
+}
+
+.heading-color{
+	color: #999;
+}
+
+.email-content-color{
+	color: #1F4E79;
+}
+
+.calender-color{
+	background-color: #DDDDDD;
+}
+
+.website-color{
+	color: #497DDD;
+	text-decoration: underline;
+}
+
+.track-limit-more{
+	background-color: #ffcccc !important;
+}
+/****/
+
+.label-width{
+	width: 5em;
+}
+
+.button-group-width{
+	width: 60%;
+}
+
+.dr-selections{
+	width: 96%;
+}
+
+.picker-width{
+	width:80%;
+}
+
+.date-picker-width{
+	width: 350px;
+	z-index: 2;
+}
+/*** margin css **/
+
+.no-margin{
+	margin:0;
+}
+
+.margin-five{
+	margin: 5px;
+}
+
+.margin-ten{
+	margin: 10px;
+}
+
+.margin-twenty{
+	margin: 20px;
+}
+
+.margin-top-seven{
+	margin-top: 7px;
+}
+
+.margin-top-ten{
+	margin-top: 10px;
+}
+
+.margin-top-twelve{
+	margin-top: 12px;
+}
+
+.margin-top-fifteen{
+	margin-top: 15px;
+}
+
+.margin-top-twenty{
+	margin-top: 20px;
+}
+
+.margin-left-ten{
+	margin-left: 10px !important;
+}
+
+.margin-left-fifteen{
+	margin-left: 15px;
+}
+
+.margin-left-twenty{
+	margin-left: 20px;
+}
+
+.margin-left-large{
+	margin-left: 25px;
+}
+
+.margin-right-ten{
+	margin-right: 10px !important;
+}
+
+.margin-right-twenty{
+	margin-right: 20px;
+}
+
+.bottom-five{
+	margin-bottom: 5px;
+}
+
+.margin-bottom-ten{
+	margin-bottom: 10px !important;
+}
+
+.bottom-fifteen{
+	margin-bottom: 15px;
+}
+
+.no-margin-bottom{
+	margin-bottom: 0px;
+}
+
+.margin-bottom-large{
+	margin-bottom: 25px
+}
+
+#pendingtaskblock{
+	margin-right: -14px;
+}
+#todaytaskblock{
+	margin-left: -14px;
+}
+
+#trc-search{
+	min-height: 2.5em;
+}
+
+#trc-search::-ms-clear{
+	display: none; 
+	width:0; 
+	height:0;
+}
+
+.search-cross{
+	height: 34px;
+    width: 27px;  
+	position: absolute; 
+	right: 8px;
+	bottom: 3px;
+	cursor:default;
+}
+
+.search-icon{
+	position: absolute;  
+	top: 11px;   
+	right: 7px;  
+	color: #ccc;
+}
+
+.close-block{
+	height: 34px;
+    width: 27px;  
+	position: absolute; 
+	right: 8px;
+	top: 0px;
+	z-index: 2;
+}
+
+.close-icon{
+	position: absolute;  
+	top: 11px;   
+	right: 7px;  
+	color: #ccc;
+}
+
+.today-task-block{
+	margin: 0 0 20px 0;
+}
+/****/
+
+.search-result{
+	margin: 16px 10px 0 10px;
+}
+.close-result{
+	margin: 16px 0 0 0;
+	border-radius: 0;
+}
+
+.action-header{
+	min-width: 140px;
+	width: 140px;
+}
+.thHead{
+	max-width: 200px !important;
+}
+
+.calender-button{
+	max-width: 170px;
+}
+.saveemails-block{
+	margin-left: 5em;
+}
+
+.track-action-header{
+	min-width:250px; 
+	width: 250px;
+}
+
+.button-style{
+	min-height: 60px;
+}
+
+.type-action-header{
+	min-width: 280px; 
+	width: 280px;
+}
+
+.checkbox-header{
+	min-width: 40px;
+}
+
+.header-project{
+	width: 130px;
+}
+
+.type-header{
+	width:30%;
+}
+
+.status-content-width{
+	/** width: 88%; **/
+}
+
+.client-header{
+	min-width: 130px
+}
+
+.toolbar-span{
+	vertical-align: inherit; 
+	font-size: large;
+}
+.removeUnderline{
+	text-decoration: none !important;
+	color: #333;
+}
+
+.projecttask{
+	margin:0px 2px 0px;
+	width: 97%;
+	word-break: break-word;
+}
+
+.task-title{
+	width: 97%;
+	word-break: break-word;
+}
+
+.input-hours{
+	max-width: 80%;
+}
+
+.timeTrackSegmentTotal{
+	margin: 7px 0px;
+}
+
+.table-cell-actions{
+	min-width: 228px;
+}
+
+/******/
+.container-height{
+	min-height: 61px;
+}
+
+.nav-my{
+	z-index: 3;
+}
+
+.dropdown-menu-style{
+	background-color: #ff6d00; 
+	top: 58px;
+}
+
+.header-container{
+	border-bottom: solid 3px #808080;
+}
+
+.relative{
+	position: relative;
+}
+
+.absolute{
+	position: absolute;
+}
+
+.user-header{
+	display: inline-block;
+	margin-top: 61px;
+	position: absolute;
+	right: 10px;
+}
+
+.user-image{
+	position: absolute; 
+	left: -27px; 
+	bottom: -2px;
+}
+
+.user-detail{
+	display: inline-block;
+	background-color: #808080;
+	color: #ccc; 
+	padding: 5px 60px;
+}
+.navbar-inner-style{
+	position: fixed;
+	bottom: 0; 
+	min-height: 63px;
+    padding-right: 20px;
+    background-color: #808080;
+    border: 1px solid #d4d4d4;
+    margin-top: 50px;
+    z-index:10;
+}
+
+.footer-content{
+	color: #cccccc;
+	font-size: 20px;
+	margin: 0 auto;
+	padding: 20px 0 0;
+	width: 83%;
+}
+
+.logo-image{
+	height: 102px;
+	width:247px;
+}
+
+.saveemails-top{
+	top: -2px;
+}
+
+.middle-block{
+	min-height: 19rem;
+}
+
+.login-button{
+	min-width: 12em !important;
+}
+
+.task-container{
+	max-height:200px;
+}
+.tom-task-heading{
+	margin-left: -14px;
+}
+
+.tom-task-block{
+	margin-left: 1em;
+	padding-top: 8px;
+}
+
+.tom-task{
+	padding-left:3px;
+}
+
+#first-time, #last-time{
+	width: 105px;
+	float: left;
+}
+
+.ui-timepicker-wrapper{
+	width: 5.5% !important;
+}
+
+/* Mith 11/23/2017: below css used for date picker on all report pages*/
+.dr-calendar li {
+	font-size: 14px;
+}
+
+.dr-range-switcher, .dr-switcher span {
+	font-size: 13px;
+
+}
+
+.dr-month-switcher, .dr-year-switcher {
+	height: 2.0rem !important;
+}
+
+/*****/
