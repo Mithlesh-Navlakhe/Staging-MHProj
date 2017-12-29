@@ -133,7 +133,6 @@ Route::group(['middleware' => ['permision']], function () {
 	Route::get('/reports/daily/{day?}/{export?}', 'ReportsController@dailyReport');
     Route::get('/reports/project/{dateStart?}/{dateFinish?}/{projectId?}/{export?}', 'ReportsController@projectReport');
     Route::get('/reports/people/{dateStart?}/{dateFinish?}/{userId?}/{export?}', 'ReportsController@peopleReport');
-	Route::get('/reports/track/{dateStart?}/{userId?}', 'ReportsController@trackReport'); //Mith: 11/21/17: added route for track report.     
 	//Mith: 05/10/17: added route for email generation reports.
     Route::get('/reports/emailproject/{dateStart?}/{dateFinish?}/{projectId?}/{export?}', 'ReportsController@mailProjectReport');
 	Route::get('/reports/performance/{dateStart?}/{dateFinish?}/{leadId?}', 'ReportsController@performanceReport');

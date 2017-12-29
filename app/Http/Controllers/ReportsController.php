@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
 use App\Project;
 use App\Task;
 use App\TimeTrack;
@@ -31,22 +30,10 @@ class ReportsController extends Controller
    * Send Status report
    * */
 	public function sendStatusReport(Request $request,$day=false) {
-        $session_token;
-        $session_keyname;
-        $session_keyvalue;
+        
         if (Input::all()) {
             $toCcEmails = array();
             $statusRpt = Input::all();
-			
-			//MITH 11/17/2017: added below code to stop multiple submission of task creation form.
-			$session_keyname = $statusRpt['_token']."-status";
-            if (Session::has($session_keyname)){
-              $session_keyvalue = Session::get($session_keyname);
-              $diffssss = strtotime(date('Y-m-d H:i:s')) - strtotime($session_keyvalue);
-              if($diffssss < 15){
-                return redirect('/reports/daily/'.$statusRpt['date']);
-              }
-            }
 			$otherTask = '';
 			$extratask = htmlspecialchars($statusRpt['extratask']);
 			$extratask = explode('#',$statusRpt['extratask']);
@@ -86,11 +73,6 @@ class ReportsController extends Controller
 			(isset($statusRpt['tousers']) && count($statusRpt['tousers'])) ? $toCcEmails['to']=implode($statusRpt['tousers'], ',') : $toCcEmails['to']=$statusRpt['tousers'];
             (isset($statusRpt['ccusers']) && count($statusRpt['ccusers'])) ? $toCcEmails['from']=implode($statusRpt['ccusers'], ',') : ((isset($statusRpt['ccusers'])) ? $toCcEmails['from']=$statusRpt['ccusers'] : $toCcEmails['from']='');
 			
-			//MITH 11/17/2017: added below code to stop multiple submission of task creation form.
-			$session_token = date('Y-m-d H:i:s');
-            Session::put($session_keyname, $session_token);
-            Session::save();	
-			
 			if(isset($statusRpt['saveemails'])){
 				$this->updateToCcEmail($toCcEmails,"status-report");
 			}
@@ -106,10 +88,10 @@ class ReportsController extends Controller
             }
 			// SN : added below function to send weekly report
 			if(date('l') == 'Friday'){
-				//$this->sendUserReport($statusRpt['firstday'], $statusRpt['date']);
+				$this->sendUserReport($statusRpt['firstday'], $statusRpt['date']);
 			}
 			
-			return redirect('/reports/daily/'.$statusRpt['date']);
+            return redirect('/reports/daily/'.$statusRpt['date']);
         }
     } 	
     
@@ -218,13 +200,12 @@ class ReportsController extends Controller
             if(Auth::user()['original']['id'] == $tasks[$key]['assign_to']){
               $status_time = $tasks[$key]['total_time'];
               $tasks[$key]['status_time'] = $objectTask->time_add_00($objectTask->secondToHour($status_time));
-              $statusTotalTime += $status_time;
-			  //$statusTotalTime += $objectTask->timeToSecond($tasks[$key]['status_time']);
+              $statusTotalTime += $objectTask->timeToSecond($tasks[$key]['status_time']);
             }
 
             $tasks[$key]['total'] = $objectTask->time_add_00($objectTask->secondToHour($total_time));
             $tasks[$key]['value'] = round($value, 0, PHP_ROUND_HALF_UP);
-            $totalTime += $total_time;
+            $totalTime += $objectTask->timeToSecond($tasks[$key]['total']);
             $totalValue += $tasks[$key]['value'];
 
         }
@@ -298,21 +279,31 @@ class ReportsController extends Controller
           foreach( $tasks as $key => $task ) {
               $total_time = 0;
               $value = 0;
+              // used for status only
+              $status_time = 0;
               if( $tasks[$key]['track_done'] == 2) {
                   $total_time = $tasks[$key]['total_time'];
                   $value = $tasks[$key]['value'];
               }
+              // used for status only
+              if(Auth::user()['original']['id'] == $tasks[$key]['assign_to']){
+                $status_time = $tasks[$key]['total_time'];
+                $tasks[$key]['status_time'] = $objectTask->time_add_00($objectTask->secondToHour($status_time));
+                $statusTotalTime += $objectTask->timeToSecond($tasks[$key]['status_time']);
+              }
+
               $tasks[$key]['total'] = $objectTask->time_add_00($objectTask->secondToHour($total_time));
               $tasks[$key]['value'] = round($value, 0, PHP_ROUND_HALF_UP);
-              $totalTime += $total_time;
+              $totalTime += $objectTask->timeToSecond($tasks[$key]['total']);
               $totalValue += $tasks[$key]['value'];
 
           }
-		  $total['totalTime'] = $objectTask->time_add_00($objectTask->secondToHour($totalTime));
+          $total['status_total'] = $objectTask->time_add_00($objectTask->secondToHour($statusTotalTime));
+          $total['totalTime'] = $objectTask->time_add_00($objectTask->secondToHour($totalTime));
           $total['totalValue'] = round($totalValue, 0, PHP_ROUND_HALF_UP);
-          $dayReport = $tasks;		
-          
-		  $name = 'daily-report';
+          $dayReport = $tasks;
+		  // used for column order setting	
+          $name = 'daily-report';
           $column = $this->getcolumnupdate($name);
           return view('reports.dayliReport', compact('dayReport', 'date', 'total','column'));
       }
@@ -571,103 +562,7 @@ class ReportsController extends Controller
 
         return $allUsers;
     }
-	
-	/*
-     * Track report used to see task tracking according to selected date and person.
-     * $userId - id user
-     * */	 
-	public function trackReport( $dateStart=false, $userId=false) {
-		if (!isset($dateStart) && !isset($dateFinish) && !isset($userId)){
-			 return back();
-		}
-		//SN 06/21/2017: added below to set date
-		$dates = date('d-m-Y');
-		$totalValue = 0;
-		$totalCost = 0;
-		$totalEconomy = 0;
-		$totalTimes = 0;
-		if(!$dateStart && !$userId) {
-		  $trackReport = array();
-		  $date = array();
-		  $total = array();
-		  $active = array();
-		  $users = $this->allUsersJson();
 
-		  $name = 'people-report';
-		  $column = $this->getcolumnupdate($name);
-		  $day = date('d-m-Y');
-		  $dates = $day;
-		  return view('reports.trackReport', compact('trackReport', 'date', 'users', 'total', 'active', 'column', 'dates'));
-		}
-
-		$active['userId'] = $userId;
-		$active['start'] = $dateStart;
-		$active['end'] = $dateStart;
-
-		$dateFinish = date_modify(date_create($dateStart), '+1 day');
-
-
-		$tasksQuery = Task::select(DB::raw('tasks.*, time_track.total_time, value, track_date, finish_track, time_track.done as track_done,task_type.task_type'))
-			 ->join('time_track','tasks.id','=','time_track.task_id')
-			 ->join('task_type','task_type.id','=','tasks.task_type')
-			 ->where('tasks.done', '=', 1);
-			(!( isset($active['userId']) && 'all' == $active['userId'])) ?  $tasksQuery->where('tasks.assign_to', '=', $userId) : '';
-
-			$tasks = $tasksQuery->where('time_track.finish_track', '>=', $dateStart)
-			->where('time_track.finish_track', '<=', $dateFinish)
-			->with('project', 'user', 'track','track_log')
-			->get();
-
-		$objectTask = new Task();
-
-		foreach( $tasks as $key => $task ) {
-			$totalTime = 0;
-			$hours = 0;
-
-			//if($task['track_done'] == 2){
-				$totalTime = $task['total_time'];
-				$hours = $task['total_time'];
-				$tasks[$key]['hours'] = $objectTask->time_hour($hours);
-				$tasks[$key]['volue'] = round($objectTask->value($totalTime, $task['relations']['project']['attributes']['hourly_rate']), 0, PHP_ROUND_HALF_UP);
-				$tasks[$key]['cost'] = round($objectTask->value($totalTime, $task['relations']['user']['attributes']['hourly_rate']), 0, PHP_ROUND_HALF_UP);
-				$tasks[$key]['economy'] = round($tasks[$key]['volue'] - $tasks[$key]['cost'], 0, PHP_ROUND_HALF_UP);
-			//  }
-
-			if (isset($tasks[$key]['hours'])) {
-				$totalValue += $tasks[$key]['volue'];
-				$totalCost += $tasks[$key]['cost'];
-				$totalEconomy += $tasks[$key]['economy'];
-						$totalTimes += $objectTask->timeToSecond($tasks[$key]['hours']);
-			} else {
-				$tasks[$key]['hours'] = '-';
-				$tasks[$key]['volue'] = '-';
-				$tasks[$key]['cost'] = '-';
-				$tasks[$key]['economy'] = '-';
-
-				$totalValue += 0;
-				$totalCost += 0;
-				$totalEconomy += 0;
-						$totalTimes += 0;
-			}
-			$task['track_start'] = $task['relations']['track_log'][0]['start'];		// mith 11/23/2017 : first tracking start time.
-		}
-
-		$total['totalValue'] = $totalValue;
-		$total['totalCost'] = $totalCost;
-		$total['totalEconomy'] = $totalEconomy;
-		$total['totalTime'] = $objectTask-> secondToHour($totalTimes);
-		$date['start'] = $dateStart;
-		$date['finish'] = $dateFinish;
-
-		$trackReport = $tasks;
-		$users = $this->allUsersJson();
-
-		//SN 06/21/2017: added below code to get column value when select any person name
-		$name = 'track-report';
-		$column = $this->getcolumnupdate($name);
-
-		return view('reports.trackReport', compact('trackReport', 'date', 'users', 'total', 'active', 'column', 'dates'));
-	}
 	
 	/*
      * mail project report
@@ -1272,14 +1167,14 @@ class ReportsController extends Controller
 		 }else{
 			array_push($emailusers,$email);
 		 }
-		 array_push($ccusers, 'jitendra.khatri@ignatiuz.com', 'deepesh.verma@ignatiuz.com');
+		//array_push($ccusers, 'jitendra.khatri@ignatiuz.com', 'deepesh.verma@ignatiuz.com');
 		 
 		 $enddate = date('m/d/Y');
 		 $startdate = date('m/d/Y', strtotime($startdate)); 
 		 $subject = $name." : Weekly Working Hours - ".$startdate. " - " .$enddate;		 
 		 if($totalhour[0] < 40 || $totalhour[0] < '40'){			
-			 //if(Mail::to($emailusers)->send(new sendUserReport($name,$subject,$totalTimes,$startdate,$enddate))){
-			 if(Mail::to($emailusers)->cc($ccusers)->send(new sendUserReport($name,$subject,$totalTimes,$startdate,$enddate))){
+			if(Mail::to($emailusers)->send(new sendUserReport($name,$subject,$totalTimes,$startdate,$enddate))){
+			// if(Mail::to($emailusers)->cc($ccusers)->send(new sendUserReport($name,$subject,$totalTimes,$startdate,$enddate))){
 				 return redirect('/reports/daily/'.$date);
 			 } 
 		 }

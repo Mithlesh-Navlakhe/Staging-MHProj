@@ -192,8 +192,8 @@
 				<div class="row">
 					<div class="info-block padding-left-fifteen">
 						<strong>Total</strong>
-						<strong>Hours: <span id="total-hour">{{ $total['totalTime'] }}</span></strong> |
-						<strong>Value: <span id="total-value">{{ $total['totalValue'] }}</span> </strong>
+						<strong>Hours: {{ $total['status_total'] }}</strong> |
+						<strong>Value: {{ $total['totalValue'] }} </strong>
 					</div>
 				</div>
 			</div>

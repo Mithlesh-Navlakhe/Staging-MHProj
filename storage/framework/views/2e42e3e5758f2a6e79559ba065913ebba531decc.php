@@ -28,7 +28,7 @@
                     </div>
                 <?php endif; ?>
                 <div class="col-md-6">
-                <a href="/" class="btn btn-large btn-primary">back</a>
+                <a href="/" class="btn btn-large btn-primary">Back</a>
                     </div>
                 <div class="col-md-6">
                 <button  type="submit" class="btn btn-large btn-primary">

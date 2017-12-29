@@ -19,8 +19,7 @@ class TimeLog extends Model
         'task_id',
         'track_id',
         'start',
-        'finish',
-		'task_status'
+        'finish'
     ];
 
     public function time_track()

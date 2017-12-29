@@ -181,8 +181,8 @@ return [
 
         //social
         Laravel\Socialite\SocialiteServiceProvider::class,
-		//excel
-		Maatwebsite\Excel\ExcelServiceProvider::class,
+	Maatwebsite\Excel\ExcelServiceProvider::class,
+
     ],
 
     /*
@@ -231,7 +231,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-		'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+	'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

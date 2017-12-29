@@ -538,19 +538,4 @@
 .ui-timepicker-wrapper{
 	width: 5.5% !important;
 }
-
-/* Mith 11/23/2017: below css used for date picker on all report pages*/
-.dr-calendar li {
-	font-size: 14px;
-}
-
-.dr-range-switcher, .dr-switcher span {
-	font-size: 13px;
-
-}
-
-.dr-month-switcher, .dr-year-switcher {
-	height: 2.0rem !important;
-}
-
 /*****/

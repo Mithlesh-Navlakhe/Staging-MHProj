@@ -168,9 +168,6 @@ $(document).ready(function(){
 			if(name == 'people-report'){ 	
 				settablecolumn();
 			}
-			if(name == 'track-report'){ 	
-				settablecolumn();
-			}
 		}
 	});
 
@@ -274,75 +271,3 @@ var Main = {
     }
    };
 });
-
-//Mith 12/19/2017: Below method is used to update total hours, cost, value and economy according selected filter in datatable
-function updateTotal(sel) {
-
-		var hoursIndex, valueIndex, costIndex, colCount,
-			incount, dataTable, colTitle,value,
-			allHours, i, j, totalHours;
-
-		dataTable = $('#usersTable').DataTable();
-		var colCount = dataTable.columns().context[0].aoColumns.length;
-
-		for(incount=0; incount<colCount; incount++){
-			colTitle = dataTable.columns().context[0].aoColumns[incount].sTitle;
-			if(colTitle == 'Hours'){
-				hoursIndex = incount;
-			}else if(colTitle == 'Value'){
-				valueIndex = incount;
-			}else if(colTitle == 'Cost'){
-				costIndex = incount;
-			}
-		}
-		setTimeout(function(){
-			var totalHour=0, totalvalue=0, totalcost=0, totaleconomy=0;
-			var rowdata = dataTable.rows( { search:'applied' } ).data();
-			var hourSpan, valueSpan, costSpan, economySpan;
-			if(rowdata.length == 0) return;
-			for(i=0;i<rowdata.length;i++){
-				var collength = rowdata[i].length;
-				var taskvalue=0;
-				var taskcost=0;
-				for(j=0;j<rowdata[i].length;j++){
-					if(hoursIndex && j == hoursIndex && rowdata[i][j] != '-'){
-						totalHour += moment.duration(rowdata[i][j], "hh:mm").asSeconds();
-					}
-					if(valueIndex && j == valueIndex && rowdata[i][j] != '-'){
-						taskvalue = parseInt(rowdata[i][j]);
-						totalvalue += taskvalue;
-					}
-					if(costIndex && j == costIndex && rowdata[i][j] != '-'){
-						taskcost = parseInt(rowdata[i][j]);
-						totalcost += taskcost;
-					}
-				}
-			}
-			totaleconomy = totalvalue - totalcost;
-			hourSpan = $('#total-hour');
-			valueSpan = $('#total-value');
-			costSpan = $('#total-cost');
-			economySpan = $('#total-economy');
-
-			if(typeof hourSpan != 'undefined'){hourSpan.text(SecondsTohhmm(totalHour))}
-			if(typeof valueSpan != 'undefined'){valueSpan.text(totalvalue)}
-			if(typeof costSpan != 'undefined'){costSpan.text(totalcost)}
-			if(typeof economySpan != 'undefined'){economySpan.text(totaleconomy)}
-		}, 1000);
-
-}
-
-//Mith 12/19/2017: Return time in hour:minute format
-function SecondsTohhmm(totalSeconds) {
-		var hours   = Math.floor(totalSeconds / 3600);
-		var minutes = Math.floor((totalSeconds - (hours * 3600)) / 60);
-		var seconds = totalSeconds - (hours * 3600) - (minutes * 60);
-
-		// round seconds
-		seconds = Math.round(seconds * 100) / 100
-
-		var result = (hours < 10 ? "0" + hours : hours);
-		result += ":" + (minutes < 10 ? "0" + minutes : minutes);
-		//result += ":" + (seconds  < 10 ? "0" + seconds : seconds);
-		return result;
-}

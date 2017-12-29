@@ -46,8 +46,7 @@ class TimeTrackController extends Controller
         $task = new Task();
 		$taskstatus = array();
 		$timespend = array();
-		$totaltracktime = '';
-		$logTrackActiveLogId='';
+		$totaltracktime = '';			   
 
         if (!$date) {
             if (isset($_COOKIE['SetDateTracking'])){
@@ -57,17 +56,6 @@ class TimeTrackController extends Controller
             }
         }
         setcookie('SetDateTracking', $date, time() + (86400 * 30), "/");
-		
-		// Mith 11/28/2017: added below query to get current user tracking task time log info.
-        $runningTask = TimeTrack::select(DB::raw('time_log.*'))
-              ->join('tasks','tasks.id','=','time_track.task_id')
-              ->join('time_log','time_log.track_id','=','time_track.id')
-              ->where('tasks.assign_to', '=', Auth::user()['original']['id'])
-              ->where('time_track.track_date', '=',date('Y-m-d', strtotime($date)))
-              ->where('time_log.task_status','=',1)
-              ->whereNull('time_log.finish')
-              ->first();
-		
 		// SN 09/08/2017: added below query for get login users menber list and  task type to add leave
 		$tasktype = TaskType::where('task_type', '=', 'Leave')->get()->first();
 		$clientnproj = Project::where('project_name', '=', 'Leave')->get()->first();
@@ -152,11 +140,11 @@ class TimeTrackController extends Controller
 			//Mith 05/26/2017: Fetch previous track record of task.
             foreach ($tracks as $key) {
 				$previousSpendTime = TimeTrack::where('task_id', '=', $key->task_id)->where('track_date', '<', date('Y-m-d', strtotime($date)))->get();
-				foreach ($previousSpendTime as $keyvalue) {
+				foreach ($previousSpendTime as $key) {
 					  $keys =array();
-					  $keys['task_id'] = $keyvalue->task_id;
-					  $keys['total_time'] = $keyvalue->total_time;
-					  $keys['track_id'] = $keyvalue->id;
+					  $keys['task_id'] = $key->task_id;
+					  $keys['total_time'] = $key->total_time;
+					  $keys['track_id'] = $key->id;
 					  array_push($timespend,$keys);
 				}
 				if($key->done < 2 && $key->assign_to == Auth::User()->id){
@@ -175,11 +163,11 @@ class TimeTrackController extends Controller
 		    //Mith 05/26/2017 fetch previous track record of task.
 		    foreach ($tracks as $key) {
 			    $previousSpendTime = TimeTrack::where('task_id', '=', $key->task_id)->where('track_date', '<', date('Y-m-d', strtotime($date)))->get();
-			    foreach ($previousSpendTime as $keyvalue) {
+			    foreach ($previousSpendTime as $key) {
 					$keys =array();
-					$keys['task_id'] = $keyvalue->task_id;
-					$keys['total_time'] = $keyvalue->total_time;
-					$keys['track_id'] = $keyvalue->id;
+					$keys['task_id'] = $key->task_id;
+					$keys['total_time'] = $key->total_time;
+					$keys['track_id'] = $key->id;
 					array_push($timespend,$keys);
 			    }
 				//SN 10/06/2017: added below code to get total working hour for login user.
@@ -220,7 +208,7 @@ class TimeTrackController extends Controller
 			$tasks = $task->time_counter($tasks);
       		$taskstatus = $this->allTaskStatus();
       		
-            return view('time_track.timeTraking', compact('tasks', 'date', 'tracks', 'timeLog', 'projects', 'taskstatus','timespend', 'userlist', 'tasktype', 'clientnproj', 'totaltracktime', 'runningTask'));
+            return view('time_track.timeTraking', compact('tasks', 'date', 'tracks', 'timeLog', 'projects', 'taskstatus','timespend', 'userlist', 'tasktype', 'clientnproj', 'totaltracktime'));
 
         }  
 		if ( Auth::user()->employe == 'Super Admin' || Auth::user()->employe == 'Admin' || Auth::user()->employe == 'Supervisor' || Auth::user()->employe == 'QA Engineer' ) {
@@ -230,7 +218,7 @@ class TimeTrackController extends Controller
 			$tasks = $task->time_counter($tasks);
 			$taskstatus = $this->allTaskStatus();
 
-            return view('time_track.timeTraking', compact('tasks', 'date', 'tracks', 'timeLog', 'projects', 'taskstatus','timespend', 'userlist', 'tasktype', 'clientnproj', 'totaltracktime', 'runningTask'));
+            return view('time_track.timeTraking', compact('tasks', 'date', 'tracks', 'timeLog', 'projects', 'taskstatus','timespend', 'userlist', 'tasktype', 'clientnproj', 'totaltracktime'));
         }
         return redirect('/');
     }
@@ -309,11 +297,11 @@ class TimeTrackController extends Controller
 			//Mith 05/26/2017: Fetch previous track record of task.
             foreach ($tracks as $key) {
 				$previousSpendTime = TimeTrack::where('task_id', '=', $key->task_id)->where('track_date', '<', date('Y-m-d', strtotime($date)))->get();
-				foreach ($previousSpendTime as $keyvalue) {
+				foreach ($previousSpendTime as $key) {
 					$keys =array();
-					$keys['task_id'] = $keyvalue->task_id;
-					$keys['total_time'] = $keyvalue->total_time;
-					$keys['track_id'] = $keyvalue->id;
+					$keys['task_id'] = $key->task_id;
+					$keys['total_time'] = $key->total_time;
+					$keys['track_id'] = $key->id;
 					array_push($timespend,$keys);
 				}
 				//SN 10/06/2017: added below code to get total working hour for login user.
@@ -333,11 +321,11 @@ class TimeTrackController extends Controller
 		    //Mith 05/26/2017 Fetch track previous track record of task.
 		    foreach ($tracks as $key) {
 				$previousSpendTime = TimeTrack::where('task_id', '=', $key->task_id)->where('track_date', '<', date('Y-m-d', strtotime($date)))->get();
-				foreach ($previousSpendTime as $keyvalue) {
+				foreach ($previousSpendTime as $key) {
 					$keys =array();
-					$keys['task_id'] = $keyvalue->task_id;
-					$keys['total_time'] = $keyvalue->total_time;
-					$keys['track_id'] = $keyvalue->id;
+					$keys['task_id'] = $key->task_id;
+					$keys['total_time'] = $key->total_time;
+					$keys['track_id'] = $key->id;
 					array_push($timespend,$keys);
 				}
 				//SN 10/06/2017: added below code to get total working hour for login user.
@@ -922,56 +910,25 @@ class TimeTrackController extends Controller
      * */
     public function create_time_log( $id = false )
     {
-		$todayDate = date('Y-m-d');
-        $data =  Input::all();
-        
-	/*	if( isset($data['id'])) {
-            $this->trackFinish($data['id']);
-			return back();
-        } */
 
-		if( isset($data['id'])) {
-            $runningTask = TimeTrack::select(DB::raw('time_log.*'))
-                ->join('tasks','tasks.id','=','time_track.task_id')
-                ->join('time_log','time_log.track_id','=','time_track.id')
-                ->where('tasks.assign_to', '=', Auth::user()['original']['id'])
-                ->where('time_track.track_date', '=',date('Y-m-d', strtotime($todayDate)))
-                ->where('time_log.task_status','=',1)
-                ->whereNull('time_log.finish')
-                ->first()['attributes']['id'];
-            if(strlen($runningTask) > 0 && $runningTask == $data['id']){
-              $this->trackFinish($data['id']);
-            } else{
-              setcookie("logTrackActiveStart", "", time()-10, "/");
-              setcookie("logTrackActiveTrackId", "", time()-10, "/");
-              setcookie("logTrackActiveLogId", "", time()-10, "/");
-            }
-			return back();
+        $data =  Input::all();
+        if( isset($data['id'])) {
+            $this->trackFinish($data['id']);
+
+            return back();
         }
+
+
 
         if( Input::all()) {
 
             if(isset($_COOKIE['logTrackActiveLogId'])){
                 $this->trackFinish($_COOKIE['logTrackActiveLogId']);
-            }else {
-              // Mith 11/28/2017: added below query to get current user tracking task time log info.
-              $runningTask = TimeTrack::select(DB::raw('time_log.*'))
-                    ->join('tasks','tasks.id','=','time_track.task_id')
-                    ->join('time_log','time_log.track_id','=','time_track.id')
-                    ->where('tasks.assign_to', '=', Auth::user()['original']['id'])
-                    ->where('time_track.track_date', '=',date('Y-m-d', strtotime($todayDate)))
-                    ->where('time_log.task_status','=',1)
-                    ->whereNull('time_log.finish')
-                    ->first()['attributes']['id'];
-                    
-              if(strlen($runningTask) > 0 ) {return back();}
-
             }
 
             $start =  Input::all();
             $start['start'] = date('Y-m-d H:i:s');
-			$start['task_status'] = 1;
-			
+
             TimeLog::create($start);
 
             $timeLog = Timelog::orderBy('id', 'desc')
@@ -986,7 +943,6 @@ class TimeTrackController extends Controller
             setcookie('logTrackActiveTrackId', $start["track_id"], time() + (86400 * 30), "/");
 
             return response()->json(['data' => (object)$timeLog]);
-			return back();
         }
 
         return false;
@@ -996,7 +952,7 @@ class TimeTrackController extends Controller
     {
         $data['finish'] = date('Y-m-d H:i:s');
         $data['id'] = $id;
-		$data['task_status'] = 0;
+
 
         ( new TimeLog() )->totalTime($data);
 
@@ -1096,9 +1052,8 @@ class TimeTrackController extends Controller
     public function getTimeStartLogById( $id )
     {
         $date['start'] = TimeLog::where('id', '=', $id)
-						->whereNull('finish')
-						->select('start')
-						->first()['attributes']['start'];
+            ->select('start')
+            ->first()['attributes']['start'];
 
         $date['now'] = date('Y-m-d H:i:s');
         return response()->json(['data' => $date]);

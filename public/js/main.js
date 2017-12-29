@@ -14,39 +14,23 @@ $(document).ready(function(){
         //report calendar
         var dateStart = $('#conteiner').data('start');
         var dateEnd = $('#conteiner').data('end');
-        var singleStart = $('#conteiner').data('singlestart');
-		if(dateStart && dateEnd) {
+        if(dateStart && dateEnd) {
             if (dateStart.length > 0 && dateEnd.length > 0) {
                 $('.dr-date-start').text(moment(dateStart, 'YYYY-MM-DD').format('MMMM D, YYYY'));
                 $('.dr-date-end').text(moment(dateEnd, 'YYYY-MM-DD').format('MMMM D, YYYY'));
             }
         }
-		if(singleStart) {
-            if (singleStart.length > 0) {
-                $('.dr-date').text(moment(singleStart, 'YYYY-MM-DD').format('MMMM D, YYYY'));
-            }
-        }
 
-		var todaysdate='';
-        var different='';
         var i = 0;
         setInterval(function () {
             if (t) {
                 var idActiveLog = $('#conteiner').data('log-active');
-                var timmer_todaysdate = new Date();
-                if(todaysdate != ''){
-                  console.log((moment(timmer_todaysdate, "YYYY-MM-DD hh:mm:ss") - moment(todaysdate, "YYYY-MM-DD hh:mm:ss")) / 1000);
-                  var different = (moment(timmer_todaysdate, "YYYY-MM-DD hh:mm:ss") - moment(todaysdate, "YYYY-MM-DD hh:mm:ss")) / 1000;
-                }
-                if(!different || different >= 120){
-                  $.get('/get/timestart/' + idActiveLog, function (date) {
-                      var duration = SecondsTohhmmss((moment(date.data.now, "YYYY-MM-DD hh:mm:ss") - moment(date.data.start, "YYYY-MM-DD hh:mm:ss")) / 1000);
-                      seconds = duration.slice(6,7) == 0 ? duration.slice(7) : duration.slice(6);
-                      minutes = duration.slice(3,4) == 0 ? duration.slice(4,5) : duration.slice(3,5);
-                      hours = duration.slice(1,2) == 0 ? duration.slice(1,2) : duration.slice(0,2);
-                  });
-                  todaysdate = new Date();
-                }
+                $.get('/get/timestart/' + idActiveLog, function (date) {
+                    var duration = SecondsTohhmmss((moment(date.data.now, "YYYY-MM-DD hh:mm:ss") - moment(date.data.start, "YYYY-MM-DD hh:mm:ss")) / 1000);
+                    seconds = duration.slice(6,7) == 0 ? duration.slice(7) : duration.slice(6);
+                    minutes = duration.slice(3,4) == 0 ? duration.slice(4,5) : duration.slice(3,5);
+                    hours = duration.slice(1,2) == 0 ? duration.slice(1,2) : duration.slice(0,2);
+                });
             }
             i++;
         },1000)
@@ -74,20 +58,7 @@ $(document).ready(function(){
 
     //calendar
 
-	var dd = new Calendar({
-        element: $('.track-datepicker'),
-        current_date: moment(),
-        format: {input: 'MMMM D, YYYY'},
-        required: false,
-        callback: function() {
-            var start = moment($('.dr-date').text()).format('YYYY-MM-DD');
-            var userId = $("#SelectAllUserTrackReport option:selected").val();
-            if (userId.length > 0) {
-                window.location.href = "/reports/track/" + start + '/' + userId;
-            }
-        }
-    });
-	
+
     var dd = new Calendar({
         element: $('.one'),
         earliest_date: 'January 1, 2000',
@@ -100,10 +71,14 @@ $(document).ready(function(){
                 end = moment(this.end_date).format('YYYY-MM-DD');
 
             var userId = $("#SelectAllUserReport option:selected").val();
-			if (userId.length > 0) {
-				window.location.href = "/reports/people/" + start + '/' + end + '/' + userId;
+
+            if (userId.length > 0) {
+
+                window.location.href = "/reports/people/" + start + '/' + end + '/' + userId;
             }
-		}
+
+            console.debug('Start Date: '+ start +'\nEnd Date: '+ end);
+        }
     });
 
     var ds = new Calendar({
@@ -112,13 +87,19 @@ $(document).ready(function(){
         latest_date: moment(),
         start_date: moment().subtract(29, 'days'),
         end_date: moment(),
-		callback: function() {
+
+        callback: function() {
             var start = moment(this.start_date).format('YYYY-MM-DD'),
                 end = moment(this.end_date).format('YYYY-MM-DD');
-			var userId = $("#SelectAllProjectReport option:selected").val();
-			if (userId.length > 0) {
-				window.location.href = "/reports/project/" + start + '/' + end + '/' + userId;
+
+            var userId = $("#SelectAllProjectReport option:selected").val();
+
+            if (userId.length > 0) {
+
+                window.location.href = "/reports/project/" + start + '/' + end + '/' + userId;
             }
+
+            console.debug('Start Date: '+ start +'\nEnd Date: '+ end);
         }
     });
 
@@ -253,6 +234,7 @@ $(document).ready(function(){
         var userId = $("#SelectAllUserReport option:selected").val();
         var start = moment($('.dr-date-start').text(), 'MMMM D, YYYY').format('YYYY-MM-DD');
         var end = moment($('.dr-date-end').text(), 'MMMM D, YYYY').format('YYYY-MM-DD');
+        console.debug('Start Date: '+ start +'\nEnd Date: '+ end);
         window.location.href = "/reports/people/" + start + '/' + end + '/' + userId;
     });
 
@@ -260,6 +242,7 @@ $(document).ready(function(){
         var userId = $("#SelectAllProjectReport option:selected").val();
         var start = moment($('.dr-date-start').text(), 'MMMM D, YYYY').format('YYYY-MM-DD');
         var end = moment($('.dr-date-end').text(), 'MMMM D, YYYY').format('YYYY-MM-DD');
+        console.debug('Start Date: '+ start +'\nEnd Date: '+ end);
         window.location.href = "/reports/project/" + start + '/' + end + '/' + userId;
     });
 
@@ -270,28 +253,23 @@ $(document).ready(function(){
 		if(userId){
 			var start = moment($('.dr-date-start').text(), 'MMMM D, YYYY').format('YYYY-MM-DD');
 			var end = moment($('.dr-date-end').text(), 'MMMM D, YYYY').format('YYYY-MM-DD');
+			console.debug('Start Date: '+ start +'\nEnd Date: '+ end);
 			window.location.href = "/reports/emailproject/" + start + '/' + end + '/' + userId;
 		}
     });
 
 	//Mith 05/12/2017: updated below code for performance option.
 	$(document).on("change", "#SelectedPerformance", function () {
-		var leadId = $("#SelectedPerformance").val();
-		if(leadId){
-			$('#button-performance').attr('disabled',true);
-			$('#button-performance').css({pointerEvents: "none"});
-    		var start = moment($('.dr-date-start').text(), 'MMMM D, YYYY').format('YYYY-MM-DD');
-    		var end = moment($('.dr-date-end').text(), 'MMMM D, YYYY').format('YYYY-MM-DD');
-    		window.location.href = "/reports/performance/" + start + '/' + end + '/' + leadId;
+		    var leadId = $("#SelectedPerformance").val();
+		    if(leadId){
+				$('#button-performance').attr('disabled',true);
+				$('#button-performance').css({pointerEvents: "none"});
+    			var start = moment($('.dr-date-start').text(), 'MMMM D, YYYY').format('YYYY-MM-DD');
+    			var end = moment($('.dr-date-end').text(), 'MMMM D, YYYY').format('YYYY-MM-DD');
+    			window.location.href = "/reports/performance/" + start + '/' + end + '/' + leadId;
         }
     });
 	
-	//Mith 11/21/2017: updated below code for track report option.
-	$(document).on("change", "#SelectAllUserTrackReport", function () {
-		var userId = $("#SelectAllUserTrackReport option:selected").val();
-		var start = moment($('.dr-date').text(), 'MMMM D, YYYY').format('YYYY-MM-DD');
-		window.location.href = "/reports/track/" + start + '/' + userId;
-	});
 	
 	//SN 09/08/2017: added below code for leave section
 	var newdate = new Date();   
@@ -1470,7 +1448,7 @@ $(document).ready(function(){
                 this.api().columns().every(function () {
                     var column = this;
 					var val,newfilter,selected;
-                    var select = $('<select id="alloption" onchange="updateTotal(this)"><option value="">All</option></select>')
+                    var select = $('<select id="alloption"><option value="">All</option></select>')
                         .appendTo($(column.footer()).empty())
                         .on('change', function () {
                             var val = $.fn.dataTable.util.escapeRegex(

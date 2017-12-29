@@ -191,10 +191,10 @@
                     <div class="row">
 						<div class="info-block padding-left-fifteen">
 							@if(!empty($total))
-								<strong>Total Hours: <span id="total-hour"><?= $total['totalTime'] ?></span> </strong><br>
-								<strong>Value: <span id="total-value"><?= $total['totalValue'] ?></span> </strong> |
-								<strong>Cost: <span id="total-cost"><?= $total['totalCost'] ?></span> </strong> |
-								<strong>Economy: <span id="total-economy"><?= $total['totalEconomy'] ?></span> </strong>
+								<strong>Total Hours: <?= $total['totalTime'] ?> </strong><br>
+								<strong>Value: <?= $total['totalValue'] ?> </strong> |
+								<strong>Cost: <?= $total['totalCost'] ?> </strong> |
+								<strong>Economy: <?= $total['totalEconomy'] ?> </strong>
 							@else
 								<strong>Total Hours: 0</strong><br>
 								<strong>Value: 0 </strong> |

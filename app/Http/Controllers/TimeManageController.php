@@ -427,9 +427,6 @@ class TimeManageController extends Controller
      * */
     public function create_task(Request $request)
     {
-		$session_token;
-        $session_keyname;
-        $session_keyvalue;
         if (Input::all()) {
             if (Auth::user()->employe == 'Developer') {
                 $this->validation_task_developer($request);
@@ -437,16 +434,6 @@ class TimeManageController extends Controller
                 $this->validation_task($request);
             }
             $task = Input::all();
-			
-			//MITH 11/17/2017: added below code to stop multiple submission of task creation form.
-			$session_keyname = $task['_token']."-createtask";
-            if (Session::has($session_keyname)){
-              $session_keyvalue = Session::get($session_keyname);
-              $diffssss = strtotime(date('Y-m-d H:i:s')) - strtotime($session_keyvalue);
-              if($diffssss < 15){
-                return redirect('/task/all');
-              }
-            }
 
             if (!isset($task['company_id'])) {
                 $client_id = Project::where('id', '=', $task['project_id'])
@@ -482,11 +469,6 @@ class TimeManageController extends Controller
                 'billable' => $task['billable'],
 				'task_assign_by' => $task['task_assign_by']
             ]);
-			
-			//MITH 11/17/2017: added below code to stop multiple submission of task creation form.
-			$session_token = date('Y-m-d H:i:s');
-            Session::put($session_keyname, $session_token);
-            Session::save();
 			
 			//SN 05/23/2017: added below code to send email when task create
 			if($task['assign_to']){

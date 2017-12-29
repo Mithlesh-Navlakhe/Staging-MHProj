@@ -259,10 +259,6 @@ class Swift_Transport_StreamBuffer extends Swift_ByteStream_AbstractFilterableIn
         if (!empty($this->_params['sourceIp'])) {
             $options['socket']['bindto'] = $this->_params['sourceIp'].':0';
         }
-		// Mith 12/25/2017 : added below to ssl option to resolved issue 'stream_socket_enable_crypto(): SSL operation failed with code 1'.
- 
-		$options['ssl']['verify_peer'] = FALSE;
-        $options['ssl']['verify_peer_name'] = FALSE;
         if (isset($this->_params['stream_context_options'])) {
             $options = array_merge($options, $this->_params['stream_context_options']);
         }

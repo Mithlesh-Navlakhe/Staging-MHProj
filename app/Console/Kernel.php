@@ -12,9 +12,7 @@ class Kernel extends ConsoleKernel
      *
      * @var array
      */
-    protected $commands = [
-        //
-    ];
+    protected $commands = ['App\Console\Commands\WeeklyReports'];
 
     /**
      * Define the application's command schedule.
@@ -28,6 +26,8 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
 		// Run every 5 minutes
         $schedule->command('queue:work --sleep=3 --tries=3')->everyFiveMinutes();
+		$file = 'command1_output.log';
+        $schedule->command('weeklyreports')->everyMinute()->sendOutputTo($file)->emailOutputTo('mithlesh.navlakhe@ignatiuz.com');
     }
 
     /**

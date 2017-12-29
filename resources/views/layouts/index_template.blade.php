@@ -35,8 +35,6 @@
     <!-- Scripts -->
     <script>
         window.Laravel = '<?php echo json_encode(['csrfToken' => csrf_token(), ]); ?>'
-		function updateTotal(sel) {} 
-		<!--- Mith 12/19/2017: onchange event method for datatable --->
     </script>
 </head>
 <body id="bodyData" data-msg="<?=isset($msg) ? $msg : '' ?>" data-theme="<?=isset($theme) ? $theme : '' ?>">
@@ -89,9 +87,6 @@
 								@endif
 								@if ($status == 'Lead' || $status == 'Super Admin' || $status == 'Admin' || $status == 'Supervisor')
 									<li><a href="/reports/emailproject">Email Report</a></li>     <!-- Mith: 05/10/17: added new option for email report. -->
-								@endif
-								@if ($status == 'Super Admin' || $status == 'Admin' || $status == 'Supervisor')
-									<li><a href="/reports/track">Track Report</a></li>     <!-- Mith: 11/21/17: added new option for track report. -->
 								@endif
 								<!--@if ($status == 'Super Admin' || $status == 'Admin')
 									<li role="separator" class="divider"></li>

@@ -38,7 +38,6 @@ class WeeklyReports extends Command
      */
     public function handle()
     {
-        $reportControl = new ReportsController;
-        $reportControl->weeklyHoursReport();
+        dump("Working");
     }
 }

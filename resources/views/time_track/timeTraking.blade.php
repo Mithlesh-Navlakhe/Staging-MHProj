@@ -16,35 +16,11 @@ $idActiveUser = \Illuminate\Support\Facades\Auth::user()['original']['id']?>
 	</div>
 </div>
 
-<?php
-    // Mith 11/28/2017: added logic as cookie is set only after page reloading.
-    $logTrackActiveStart = isset($_COOKIE['logTrackActiveStart']) ? $_COOKIE['logTrackActiveStart'] : '';
-		$logTrackActiveLogId = isset($_COOKIE['logTrackActiveLogId']) ? $_COOKIE['logTrackActiveLogId'] : '';
-		$logTrackActiveTrackId = isset($_COOKIE['logTrackActiveTrackId']) ? $_COOKIE['logTrackActiveTrackId'] : '';
-		if(isset($runningTask)){
-			 if(!isset($_COOKIE['logTrackActiveLogId']) || ($_COOKIE['logTrackActiveLogId'] != $runningTask['attributes']['id'])){
-				 setcookie('logTrackActiveStart', $runningTask['attributes']['start'], time() + (86400 * 30), "/");
-				 setcookie('logTrackActiveTrackId', $runningTask['attributes']['track_id'], time() + (86400 * 30), "/");
-				 setcookie('logTrackActiveLogId', $runningTask['attributes']['id'], time() + (86400 * 30), "/");
-				$logTrackActiveStart = $runningTask['attributes']['start'];
-				$logTrackActiveLogId = $runningTask['attributes']['id'];
-				$logTrackActiveTrackId = $runningTask['attributes']['track_id'];
-			}
-		} else {
-			setcookie("logTrackActiveStart", "", time()-10, "/");
-			setcookie("logTrackActiveTrackId", "", time()-10, "/");
-			setcookie("logTrackActiveLogId", "", time()-10, "/");
-			$logTrackActiveStart = '';
-			$logTrackActiveLogId = '';
-			$logTrackActiveTrackId = '';
-		}
- ?>
-
 <div id="conteiner" class="container" data-date="<?= isset($date)? $date : '' ?>"
 	data-status="{{\Illuminate\Support\Facades\Auth::user()['original']['employe']}}"
 	data-idactiveuser="{{\Illuminate\Support\Facades\Auth::user()['original']['id']}}"
 	data-token="{{ Session::token() }}"
-	data-log-active = "<?= isset($logTrackActiveLogId) ? $logTrackActiveLogId : '' ?>"
+	data-log-active = "<?= isset($_COOKIE['logTrackActiveLogId']) ? $_COOKIE['logTrackActiveLogId'] : ''?>"
 	data-pagename = "<?= (isset( $track )) ? '' : 'tracking' ; ?>">
 
 	@if(Session::has('flash_message'))
@@ -586,7 +562,8 @@ $idActiveUser = \Illuminate\Support\Facades\Auth::user()['original']['id']?>
 								</td>
 								<td class="text-right">
 									<h3 id="timeTrackSegmentTotal"
-										class="timeTrackSegmentTotal <?= isset($logTrackActiveTrackId) && $logTrackActiveTrackId == $key->id ? 'timeTrackSegmentTotalActive' : '' ?>"
+										class="timeTrackSegmentTotal <?= isset($_COOKIE['logTrackActiveTrackId']) && $_COOKIE['logTrackActiveTrackId'] == $key->id ? 'timeTrackSegmentTotalActive' : '' ?>"
+										
 										data-total="<?= $totalTime ?>">
 											{{ ($totalTime == null) ? '00:00:00' : $totalTime }}
 									</h3>
@@ -609,27 +586,27 @@ $idActiveUser = \Illuminate\Support\Facades\Auth::user()['original']['id']?>
 									<div class="btn-group">
 										<span class="stop-start-button">
 											@if ($key->done == 0)
-												<a  href='/trask/done/<?= $key->id ?>' <?= $key->task->assign_to != Auth::user()['original']['id'] ? 'disabled' : "" ?> class="btn btn-success {{ $key->task->assign_to != Auth::user()['original']['id'] ? 'no-click' : "" }}" id="doneTrack" style="<?= isset($logTrackActiveTrackId) && $logTrackActiveTrackId == $key->id ? 'display:none' : '' ?>" >
+												<a  href='/trask/done/<?= $key->id ?>' <?= $key->task->assign_to != Auth::user()['original']['id'] ? 'disabled' : "" ?> class="btn btn-success {{ $key->task->assign_to != Auth::user()['original']['id'] ? 'no-click' : "" }}" id="doneTrack" style="<?= isset($_COOKIE['logTrackActiveTrackId']) && $_COOKIE['logTrackActiveTrackId'] == $key->id ? 'display:none' : '' ?>" >
 													<span class="glyphicon glyphicon-ok"></span>Submit
 												</a>
 											@else
-												<a  href='#'  class="btn btn-warning no-click" id="doneReject" disabled style="<?= isset($logTrackActiveTrackId) && $logTrackActiveTrackId == $key->id ? 'display:none' : '' ?>" >
+												<a  href='#'  class="btn btn-warning no-click" id="doneReject" disabled style="<?= isset($_COOKIE['logTrackActiveTrackId']) && $_COOKIE['logTrackActiveTrackId'] == $key->id ? 'display:none' : '' ?>" >
 													<span class="glyphicon glyphicon-ok"></span>Approval Pending
 												</a>
 											@endif
 											@if ($key->done == 0)
-												<button class="btn btn-default" id="startTrack" title="Start Tracking" <?= $key->task->assign_to != Auth::user()['original']['id'] ? 'disabled' : "" ?> style="<?= isset($logTrackActiveTrackId) && $logTrackActiveTrackId == $key->id ? 'display:none' : '' ?>" >
+												<button class="btn btn-default" id="startTrack" title="Start Tracking" <?= $key->task->assign_to != Auth::user()['original']['id'] ? 'disabled' : "" ?> style="<?= isset($_COOKIE['logTrackActiveTrackId']) && $_COOKIE['logTrackActiveTrackId'] == $key->id ? 'display:none' : '' ?>" >
 													<span class="glyphicon glyphicon-play"></span>
 												</button>
 											@endif
-											<button href="#" class="btn btn-danger" id="stopTrack2" title="Stop Tracking" style="<?= isset($logTrackActiveTrackId) && $logTrackActiveTrackId == $key->id ? '' : 'display:none' ?>">
+											<button href="#" class="btn btn-danger" id="stopTrack2" title="Stop Tracking" style="<?= isset($_COOKIE['logTrackActiveTrackId']) && $_COOKIE['logTrackActiveTrackId'] == $key->id ? '' : 'display:none' ?>">
 												<span class="glyphicon glyphicon-stop"></span>
 											</button>
 											<span class="addTrackFinishForm">
-											@if(isset($logTrackActiveTrackId) && $logTrackActiveTrackId == $key->id)
+											@if(isset($_COOKIE['logTrackActiveTrackId']) && $_COOKIE['logTrackActiveTrackId'] == $key->id)
 												<form id="stop-form-track" action="/create/timelog" method="POST" class="hidden">
 													{{ csrf_field() }}
-													<input type="hidden" id="stop-form-track-id" name="id" value="<?= $logTrackActiveLogId ?>">
+													<input type="hidden" id="stop-form-track-id" name="id" value="<?= $_COOKIE['logTrackActiveLogId'] ?>">
 												 </form>
 											@endif
 											</span>
